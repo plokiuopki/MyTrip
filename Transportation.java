@@ -1,4 +1,3 @@
-// Transportation.java
 import java.util.Scanner;
 
 public class Transportation {
@@ -13,14 +12,24 @@ public class Transportation {
         System.out.println("1. First Class\n2. Coach");
         int classChoice = scanner.nextInt();
 
-        double basePrice = switch (classChoice) {
-            case 1 -> 1200;
-            case 2 -> 600;
-            default -> 0;
-        };
+        //European flight base price from DC
+        double basePrice;
+        switch (classChoice) {
+            case 1:
+                basePrice = 1200;
+                break;
+            case 2:
+                basePrice = 600;
+                break;
+            default:
+                basePrice = 0;
+                break;
+        }
 
+        //Splits the date into an array of strings so that month can be used to calculate surge pricing
+        //Second index of the array is the month -> converts string month to an int
         int month = Integer.parseInt(travelDate.split("-")[1]);
-        if (month == 12 || month == 7) {
+        if (month == 12 || month == 7) { //Surge prices are December and July
             basePrice *= 1.25;
         }
 
@@ -33,3 +42,4 @@ public class Transportation {
         return scanner.next().equalsIgnoreCase("yes") ? airfare * 0.04 : 0;
     }
 }
+
