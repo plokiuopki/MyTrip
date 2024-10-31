@@ -1,4 +1,3 @@
-// Excursion.java
 import java.util.Scanner;
 
 public class Excursion {
@@ -17,30 +16,30 @@ public class Excursion {
         double[] costs;
 
         switch (destination) {
-            case "Paris" -> {
+            case "Paris":
                 options = new String[]{"Mont Saint Michel Day - $120", "Eiffel Tower Summit - $58", "Louvre - $70", "Seine Dinner Cruise - $72"};
                 costs = new double[]{120, 58, 70, 72};
-            }
-            case "Munich" -> {
+                break;
+            case "Munich":
                 options = new String[]{"Neuschwanstein Castle Tour - $75", "Bohemian and Saxon Switzerland Day Trip - $163", "Rothenburg Day Tour - $82", "Berchtesgaden and Eagle’s Nest Day Trip - $70"};
                 costs = new double[]{75, 163, 82, 70};
-            }
-            case "London" -> {
+                break;
+            case "London":
                 options = new String[]{"Stonehenge, Windsor Castle - $131", "Big Bus Tour & River Cruise - $51", "Guided Tour in Buckingham - $113", "Harry Potter Warner Bros. Studio Tour - $144"};
                 costs = new double[]{131, 51, 113, 144};
-            }
-            case "Rome" -> {
+                break;
+            case "Rome":
                 options = new String[]{"Vatican Tour - $98", "Colosseum Arena Floor Guided Tour - $61", "Pompeii, Amalfi Coast Day Trip - $120", "Pompeii Guided Tour with Lunch - $229"};
                 costs = new double[]{98, 61, 120, 229};
-            }
-            default -> {
+                break;
+            default:
                 options = new String[0];
                 costs = new double[0];
-            }
+                break;
         }
 
         int choice;
-        do {
+        do { // Allows user to select infinite amount of excursions until their budget runs out
             for (int i = 0; i < options.length; i++) {
                 System.out.println((i + 1) + ". " + options[i]);
             }
@@ -61,3 +60,4 @@ public class Excursion {
         return excursionCost;
     }
 }
+
