@@ -1,4 +1,3 @@
-// Accommodation.java
 import java.util.Scanner;
 
 public class Accommodation {
@@ -13,12 +12,21 @@ public class Accommodation {
         System.out.println("1. 1-2 Stars ($100 per night)\n2. 3 Stars ($200 per night)\n3. 4-5 Stars ($400 per night)");
         int hotelChoice = scanner.nextInt();
 
-        double hotelCost = switch (hotelChoice) {
-            case 1 -> 100;
-            case 2 -> 200;
-            case 3 -> 400;
-            default -> 0;
-        };
+        double hotelCost;
+        switch (hotelChoice) {
+            case 1:
+                hotelCost = 100;
+                break;
+            case 2:
+                hotelCost = 200;
+                break;
+            case 3:
+                hotelCost = 400;
+                break;
+            default:
+                hotelCost = 0;
+                break;
+        }
 
         System.out.print("How many nights will you stay? ");
         int nights = scanner.nextInt();
@@ -28,3 +36,4 @@ public class Accommodation {
         return hotelCost;
     }
 }
+
