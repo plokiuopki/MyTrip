@@ -17,13 +17,20 @@ public class MyTrip {
         String travelDate = budgetManager.askTravelDate();
         String destination = budgetManager.askDestination();
 
+        //Prompt the user for the number of additional travelers (up to 3 additional)
+        System.out.print("How many additional travelers are joining you (up to 3)? ");
+        int additionalTravelers = Math.min(3, scanner.nextInt());
+        int totalTravelers = 1 + additionalTravelers; // Including the primary traveler
+
         //Assigns new variables for calculated travel costs
-        double airfare = transportation.calculateAirfare(destination, travelDate);
+        double airfare = transportation.calculateAirfare(destination, travelDate) * totalTravelers; //Multiply by total travelers
         double insurance = transportation.askTravelInsurance(airfare);
         double hotelCost = accommodation.calculateHotel();
-        double excursionCost = excursion.calculateExcursions(destination, budget - (airfare + insurance + hotelCost));
+        double excursionCost = excursion.calculateExcursions(destination, budget - (airfare + insurance + hotelCost), totalTravelers);
 
         //Display final itinerary to user
         budgetManager.printItinerary(travelDate, budget, destination, airfare, insurance, hotelCost, excursionCost);
     }
 }
+
+
