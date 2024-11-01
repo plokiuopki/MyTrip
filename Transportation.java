@@ -7,29 +7,52 @@ public class Transportation {
         this.scanner = scanner;
     }
 
-    public double calculateAirfare(String travelDate) {
+    public double calculateAirfare(String destination, String travelDate) {
         System.out.println("Choose your airfare class: (you must select a number i.e. 1 or 2)");
         System.out.println("1. First Class\n2. Coach");
         int classChoice = scanner.nextInt();
 
-        //European flight base price from DC
+        //European flight different base prices from DC
         double basePrice;
-        switch (classChoice) {
-            case 1:
-                basePrice = 1200;
+        switch (destination.toLowerCase()) {
+            case "paris":
+                if (classChoice == 1) {
+                    basePrice = 800;
+                } else {
+                    basePrice = 400;
+                }
                 break;
-            case 2:
-                basePrice = 600;
+            case "munich":
+                if (classChoice == 1) {
+                    basePrice = 800;
+                } else {
+                    basePrice = 600;
+                }
+                break;
+            case "london":
+                if (classChoice == 1) {
+                    basePrice = 1000;
+                } else {
+                    basePrice = 500;
+                }
+                break;
+            case "rome":
+                if (classChoice == 1) {
+                    basePrice = 1500;
+                } else {
+                    basePrice = 750;
+                }
                 break;
             default:
                 basePrice = 0;
-                break;
+                System.out.println("Invalid destination selected.");
         }
 
+        //Apply surge pricing for December and July
         //Splits the date into an array of strings so that month can be used to calculate surge pricing
         //Second index of the array is the month -> converts string month to an int
         int month = Integer.parseInt(travelDate.split("-")[1]);
-        if (month == 12 || month == 7) { //Surge prices are December and July
+        if (month == 12 || month == 7) {
             basePrice *= 1.25;
         }
 
@@ -42,4 +65,6 @@ public class Transportation {
         return scanner.next().equalsIgnoreCase("yes") ? airfare * 0.04 : 0;
     }
 }
+
+
 
