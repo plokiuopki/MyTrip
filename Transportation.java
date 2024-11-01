@@ -53,8 +53,8 @@ public class Transportation {
             };
         } else if (destination=="Rome") {
             basePrice = switch (classChoice) {
-            case 1 -> 750;
-            case 2 -> 1500;
+            case 1 -> 1500;
+            case 2 -> 750;
             default -> 0;
             };
         }
@@ -70,6 +70,10 @@ public class Transportation {
 
     public double askTravelInsurance(double airfare) {
         System.out.print("Would you like to add travel insurance, it will cost an additional 4%? (yes/no): ");
+        return scanner.next().equalsIgnoreCase("yes") ? airfare * 0.04 : 0;
+    }
+}
+
         return scanner.next().equalsIgnoreCase("yes") ? airfare * 0.04 : 0;
     }
 }
