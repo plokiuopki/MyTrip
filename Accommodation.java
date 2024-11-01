@@ -31,9 +31,13 @@ public class Accommodation {
         System.out.print("How many nights will you stay? ");
         int nights = scanner.nextInt();
 
-        hotelCost *= nights;
+        System.out.print("How many rooms would you like to book? ");
+        int rooms = scanner.nextInt();
+
+        hotelCost *= nights * rooms; //Calculates the total cost based on rooms and nights
         System.out.printf("Total Hotel Cost: $%.2f\n", hotelCost);
         return hotelCost;
     }
 }
+
 
