@@ -1,3 +1,4 @@
+// MyTrip.java
 import java.util.Scanner;
 
 public class MyTrip {
@@ -6,24 +7,25 @@ public class MyTrip {
 
         System.out.println("Welcome to My Trip Planner!");
 
-        // Creates instances of each class so it can be used to calculate overall trip cost
+        // Create instances of each component
         BudgetManager budgetManager = new BudgetManager(scanner);
         Transportation transportation = new Transportation(scanner);
         Accommodation accommodation = new Accommodation(scanner);
         Excursion excursion = new Excursion(scanner);
 
-        // Assigns new variables for collected user information
+        // Collect user information
         double budget = budgetManager.askBudget();
         String travelDate = budgetManager.askTravelDate();
         String destination = budgetManager.askDestination();
+        //boolean travelingAlone = budgetManager.askTravelingAlone();
 
-        // Assigns new variables for calculated travel costs
-        double airfare = transportation.calculateAirfare(travelDate);
+        // Calculate costs
+        double airfare = transportation.calculateAirfare(travelDate, destination);
         double insurance = transportation.askTravelInsurance(airfare);
         double hotelCost = accommodation.calculateHotel();
         double excursionCost = excursion.calculateExcursions(destination, budget - (airfare + insurance + hotelCost));
 
-        // Display final itinerary to user
-        budgetManager.printItinerary(travelDate, budget, destination, airfare, insurance, hotelCost, excursionCost);
+        // Display final itinerary
+        budgetManager.printItinerary(travelDate, destination, airfare, insurance, hotelCost, excursionCost);
     }
 }
