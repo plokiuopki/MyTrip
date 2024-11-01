@@ -7,7 +7,7 @@ public class Excursion {
         this.scanner = scanner;
     }
 
-    public double calculateExcursions(String destination, double remainingBudget) {
+    public double calculateExcursions(String destination, double remainingBudget, int numTravelers) {
         double excursionCost = 0;
 
         System.out.println("Select excursions for " + destination + " (enter 0 to stop): you must select a number i.e. 1 or 4");
@@ -39,7 +39,7 @@ public class Excursion {
         }
 
         int choice;
-        do { //Allows user to select infinite amount of excursions until their budget runs out
+        do { //Allows user to select excursions until the budget runs out
             for (int i = 0; i < options.length; i++) {
                 System.out.println((i + 1) + ". " + options[i]);
             }
@@ -48,11 +48,11 @@ public class Excursion {
 
             if (choice > 0 && choice <= options.length) {
                 double cost = costs[choice - 1];
-                if (excursionCost + cost > remainingBudget) {
+                if (excursionCost + (cost * numTravelers) > remainingBudget) {
                     System.out.println("Sorry, you don’t have enough budget for this excursion.");
                 } else {
-                    excursionCost += cost;
-                    System.out.printf("Added excursion: %s, Cost: $%.2f\n", options[choice - 1], cost);
+                    excursionCost += cost * numTravelers; //Increases excursion cost by the number of travelers
+                    System.out.printf("Added excursion: %s, Cost: $%.2f%n", options[choice - 1], cost * numTravelers);
                 }
             }
         } while (choice != 0);
@@ -60,4 +60,8 @@ public class Excursion {
         return excursionCost;
     }
 }
+
+
+
+
 
