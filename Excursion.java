@@ -39,7 +39,7 @@ public class Excursion {
         }
 
         int choice;
-        do { // Allows user to select infinite amount of excursions until their budget runs out
+        do { //Allows user to select infinite amount of excursions until their budget runs out
             for (int i = 0; i < options.length; i++) {
                 System.out.println((i + 1) + ". " + options[i]);
             }
