@@ -20,4 +20,5 @@ Comments for the team:
 -After we complete everything, we can go back and consider rewriting the code using data structures and algorithm.  For now, keep the code simple so that it is working properly because it is much easier to convert working code into a new structure than it is to try to use a data structure and algorithm with no code to reference.
 
 -Im signing off for the day.  MAKE SURE TO DOWNLOAD the new code I just added so that we don’t lose anything, as you are making your updates over the weekend.
+
 google doc: https://docs.google.com/document/d/1xbd9MWz4UFTqlmFnRALuk5Rsp4bRLO1K/edit
