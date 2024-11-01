@@ -13,7 +13,7 @@ public class Transportation {
         int classChoice = scanner.nextInt();
 
         //European flight different base prices from DC
-        double basePrice;
+        double basePrice = 0;
         switch (destination.toLowerCase()) {
             case "paris":
                 if (classChoice == 1) {
@@ -44,7 +44,6 @@ public class Transportation {
                 }
                 break;
             default:
-                basePrice = 0;
                 System.out.println("Invalid destination selected.");
         }
 
@@ -56,7 +55,7 @@ public class Transportation {
             basePrice *= 1.25;
         }
 
-        System.out.printf("Selected Airfare Cost: $%.2f\n", basePrice);
+        System.out.printf("Selected Airfare Cost per Traveler: $%.2f\n", basePrice);
         return basePrice;
     }
 
@@ -65,6 +64,7 @@ public class Transportation {
         return scanner.next().equalsIgnoreCase("yes") ? airfare * 0.04 : 0;
     }
 }
+
 
 
 
