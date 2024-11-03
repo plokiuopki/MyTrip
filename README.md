@@ -8,7 +8,8 @@ Accomplished 11/1:
 -Cleaned up the date format so that user is limited to only inputting real dates
 
 -Added the option for additional travelers and scaled expenses in each class so that it would increase cost based on the traveler amount
-
+// I added some more hotel options. About the number of travelers, up to 4 four people it will be just change of room choices. Correct? 2 double, one king, and etc.
+I could consider *1.1 if the customer would like two queen beds to accomomodate. However, two double or one king might be about the same price.
 -Added the option to book multiple hotel rooms
 
 For Monday (when I will continue working):
@@ -22,3 +23,7 @@ Comments for the team:
 -Im signing off for the day.  MAKE SURE TO DOWNLOAD the new code I just added so that we don’t lose anything, as you are making your updates over the weekend.
 
 google doc: https://docs.google.com/document/d/1xbd9MWz4UFTqlmFnRALuk5Rsp4bRLO1K/edit
+
+I have added more things to the hotel choices and one more excursion item per destination. I have also added distances and review ratings. You can also check google doc to see what I've done. I also uploaded my codes to MyTrip2 branch.
+
+Let me know what you think and you would like me to do on Sunday if you have a chance to look at it.
