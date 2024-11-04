@@ -144,11 +144,42 @@ public class Accommodation {
         }
 
         Hotel selectedHotel = hotels.get(hotelChoice - 1);
+        
+        //Ask for room type selection
+        
+        System.out.println("Choose a room type:\n1. Queen\n2. King\n3. Twin\n4. Double-double\n5. Double-queen");
+        int roomTypeChoice = scanner.nextInt();
+        double roomPrice = selectedHotel.getPrice();
+        
+        switch (roomTypeChoice) {
+        case 1 -> roomPrice *= 0.9; //Queen
+        case 2, 4 -> roomPrice *=1.0; //King or Double-double, default price
+        case 5 -> roomPrice *=1.1; //Double-queen
+        case 3 -> System.out.println("Twin room selected. Price remains the same.") ;//Twin 
+        default -> {
+        	System.out.println("Invalid room type selected");
+        	return null;
+        }
+        }
         System.out.print("How many nights will you stay? ");
         int nights = scanner.nextInt();
         double totalCost = selectedHotel.getPrice() * nights;
-
-        System.out.printf("Total Hotel Cost for %s: $%.2f\n", selectedHotel.getName(), totalCost);
+        System.out.printf("Total Hotel Cost for %s(%s Room):$%.2f\n",
+        		selectedHotel.getName(), getRoomTypeName(roomTypeChoice), totalCost);
+        
         return selectedHotel;
     }
-}
+    
+    private String getRoomTypeName(int roomTypeChoice) {
+    	return switch(roomTypeChoice) {
+    	case 1 -> "Queen";
+    	case 2 -> "King";
+    	case 3 -> "Twin";
+    	case 4 -> "Double-double";
+    	case 5 -> "Double-queen";
+    	default -> "Unknown";
+    	};
+    }
+    	
+   }
+
