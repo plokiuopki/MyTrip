@@ -85,3 +85,4 @@ public class Excursion {
         return excursionCost;
     }
 }
+
