@@ -12,26 +12,41 @@ public class MyTrip {
         Transportation transportation = new Transportation(scanner);
         Accommodation accommodation = new Accommodation(scanner);
         Excursion excursion = new Excursion(scanner);
-        
 
         // Collect user information
         double budget = budgetManager.askBudget();
         String travelDate = budgetManager.askTravelDate();
         String destination = budgetManager.askDestination();
-        //boolean travelingAlone = budgetManager.askTravelingAlone();
 
-        // Calculate costs
-        double airfare = transportation.calculateAirfare(travelDate, destination);
-        double insurance = transportation.askTravelInsurance(airfare);
-        
-        // Get hotel information and calculate hotel cost
+        // Prompt the user for the number of additional travelers
+        System.out.print("How many additional travelers? ");
+        int numTravelers = scanner.nextInt();
+
+        // Calculate airfare cost
+        double airfareCost = transportation.calculateAirfare(travelDate, destination) * (numTravelers + 1);
+        double insuranceCost = transportation.askTravelInsurance(airfareCost);
+
+        // Calculate accommodation cost
         Hotel selectedHotel = accommodation.calculateHotel(destination);
-        double hotelCost = selectedHotel != null ? selectedHotel.getPrice() : 0;
-        
-      //double hotelCost = accommodation.calculateHotel();
-        double excursionCost = excursion.calculateExcursions(destination, budget - (airfare + insurance + hotelCost));
-       
-        // Display final itinerary
-        budgetManager.printItinerary(travelDate, destination, airfare, insurance, hotelCost, excursionCost);
+        if (selectedHotel != null) {
+            double hotelCost = selectedHotel.getPrice() * (numTravelers + 1);
+            System.out.printf("Total Accommodation Cost for %d travelers: $%.2f\n", numTravelers + 1, hotelCost);
+        }
+
+        // Remaining budget after airfare and accommodation
+        double remainingBudget = budget - (airfareCost + insuranceCost);
+
+        // Calculate excursion cost
+        double excursionCost = excursion.calculateExcursions(destination, remainingBudget, numTravelers + 1);
+
+        // Display total costs
+        double totalCost = airfareCost + insuranceCost + excursionCost;
+        System.out.printf("Total Trip Cost: $%.2f\n", totalCost);
+
+        if (totalCost <= budget) {
+            System.out.println("Your trip is within budget!");
+        } else {
+            System.out.println("You have exceeded your budget.");
+        }
     }
 }
