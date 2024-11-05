@@ -35,4 +35,3 @@ public class MyTrip {
         budgetManager.printItinerary(travelDate, destination, airfare, insurance, hotelCost, excursionCost);
     }
 }
-
