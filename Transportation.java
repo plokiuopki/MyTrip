@@ -1,3 +1,4 @@
+// Transportation.java
 import java.util.Scanner;
 
 public class Transportation {
@@ -7,55 +8,63 @@ public class Transportation {
         this.scanner = scanner;
     }
 
-    public double calculateAirfare(String destination, String travelDate) {
+    public double calculateAirfare(String travelDate) {
         System.out.println("Choose your airfare class: (you must select a number i.e. 1 or 2)");
         System.out.println("1. First Class\n2. Coach");
         int classChoice = scanner.nextInt();
 
-        //European flight different base prices from DC
-        double basePrice = 0;
-        switch (destination.toLowerCase()) {
-            case "paris":
-                if (classChoice == 1) {
-                    basePrice = 800;
-                } else {
-                    basePrice = 400;
-                }
-                break;
-            case "munich":
-                if (classChoice == 1) {
-                    basePrice = 800;
-                } else {
-                    basePrice = 600;
-                }
-                break;
-            case "london":
-                if (classChoice == 1) {
-                    basePrice = 1000;
-                } else {
-                    basePrice = 500;
-                }
-                break;
-            case "rome":
-                if (classChoice == 1) {
-                    basePrice = 1500;
-                } else {
-                    basePrice = 750;
-                }
-                break;
-            default:
-                System.out.println("Invalid destination selected.");
-        }
+        double basePrice = switch (classChoice) {
+            case 1 -> 1200;
+            case 2 -> 600;
+            default -> 0;
+        };
 
-        //Apply surge pricing for December and July
-        //Splits the date into an array of strings so that month can be used to calculate surge pricing
-        //Second index of the array is the month -> converts string month to an int
         int month = Integer.parseInt(travelDate.split("-")[1]);
         if (month == 12 || month == 7) {
             basePrice *= 1.25;
         }
 
-        System.out.printf("Selected Airfare Cost per Traveler: $%.2f\n", basePrice);
+        System.out.printf("Selected Airfare Cost: $%.2f\n", basePrice);
+        return basePrice;
+    }
+    
+    public double calculateAirfare(String travelDate, String destination ) {
+        System.out.println("Choose your airfare class: (you must select a number i.e. 1 or 2)");
+        System.out.println("1. First Class\n2. Coach");
+        int classChoice = scanner.nextInt();
+        double basePrice = 0;
+        if (destination=="Paris"){
+        basePrice = switch (classChoice) {
+            case 1 -> 800;
+            case 2 -> 400;
+            default -> 0;
+        	};
+        } else if (destination=="Munich") {
+            basePrice = switch (classChoice) {
+            case 1 -> 1200;
+            case 2 -> 00;
+            default -> 0;
+            };
+        } else if (destination=="London") {
+            basePrice = switch (classChoice) {
+            case 1 -> 1000;
+            case 2 -> 500;
+            default -> 0;
+            };
+        } else if (destination=="Rome") {
+            basePrice = switch (classChoice) {
+            case 1 -> 1500;
+            case 2 -> 750;
+            default -> 0;
+            };
+        }
+
+        int month = Integer.parseInt(travelDate.split("-")[1]);
+        if (month == 12 || month == 7) {
+            basePrice *= 1.25;
+        }
+
+        System.out.printf("Selected Airfare Cost: $%.2f\n", basePrice);
         return basePrice;
     }
 
@@ -64,7 +73,3 @@ public class Transportation {
         return scanner.next().equalsIgnoreCase("yes") ? airfare * 0.04 : 0;
     }
 }
-
-
-
-
