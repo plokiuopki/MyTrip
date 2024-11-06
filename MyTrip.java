@@ -1,3 +1,4 @@
+// MyTrip.java
 import java.util.Scanner;
 
 public class MyTrip {
@@ -6,30 +7,47 @@ public class MyTrip {
 
         System.out.println("Welcome to My Trip Planner!");
 
-        //Creates instances of each class so it can be used to calculate overall trip cost
+        // Create instances of each component
         BudgetManager budgetManager = new BudgetManager(scanner);
         Transportation transportation = new Transportation(scanner);
         Accommodation accommodation = new Accommodation(scanner);
         Excursion excursion = new Excursion(scanner);
 
-        //Assigns new variables for collected user information
+        // Collect user information
         double budget = budgetManager.askBudget();
         String travelDate = budgetManager.askTravelDate();
         String destination = budgetManager.askDestination();
 
-        //Prompt the user for the number of additional travelers (up to 3 additional)
-        System.out.print("How many additional travelers are joining you (up to 3)? ");
-        int additionalTravelers = Math.min(3, scanner.nextInt());
-        int totalTravelers = 1 + additionalTravelers; // Including the primary traveler
+        // Prompt the user for the number of additional travelers
+        System.out.print("How many additional travelers? ");
+        int numTravelers = scanner.nextInt();
 
-        //Assigns new variables for calculated travel costs
-        double airfare = transportation.calculateAirfare(destination, travelDate) * totalTravelers; //Multiply by total travelers
-        double insurance = transportation.askTravelInsurance(airfare);
-        double hotelCost = accommodation.calculateHotel();
-        double excursionCost = excursion.calculateExcursions(destination, budget - (airfare + insurance + hotelCost), totalTravelers);
+        // Calculate airfare cost
+        double airfareCost = transportation.calculateAirfare(travelDate, destination) * (numTravelers + 1);
+        double insuranceCost = transportation.askTravelInsurance(airfareCost);
 
-        //Display final itinerary to user
-        budgetManager.printItinerary(travelDate, budget, destination, airfare, insurance, hotelCost, excursionCost);
+        // Calculate accommodation cost
+        Hotel selectedHotel = accommodation.calculateHotel(destination);
+        if (selectedHotel != null) {
+            double hotelCost = selectedHotel.getPrice() * (numTravelers + 1);
+            System.out.printf("Total Accommodation Cost for %d travelers: $%.2f\n", numTravelers + 1, hotelCost);
+        }
+
+        // Remaining budget after airfare and accommodation
+        double remainingBudget = budget - (airfareCost + insuranceCost);
+
+        // Calculate excursion cost
+        double excursionCost = excursion.calculateExcursions(destination, remainingBudget, numTravelers + 1);
+
+        // Display total costs
+        double totalCost = airfareCost + insuranceCost + excursionCost;
+        System.out.printf("Total Trip Cost: $%.2f\n", totalCost);
+
+        if (totalCost <= budget) {
+            System.out.println("Your trip is within budget!");
+        } else {
+            System.out.println("You have exceeded your budget.");
+        }
     }
 }
 
