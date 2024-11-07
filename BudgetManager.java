@@ -7,19 +7,19 @@ public class BudgetManager {
         this.scanner = scanner;
     }
 
-    public double askBudget() {
+    public double theBudget() {
         System.out.print("Enter your trip budget: $");
         return scanner.nextDouble();
     }
 
-    public String askTravelDate() { //Makes sure user can only add real date
+    public String askDate() { //makes sure user can only add real date
         while (true) {
             System.out.print("Enter your travel date (YYYY-MM-DD): ");
             String travelDate = scanner.next();
 
-            //Split string into array separated by -
+            //splits string into array separated by "-"
             String[] dateParts = travelDate.split("-");
-            if (dateParts.length != 3) { //Makes sure a year month and day are properly entered to proceed
+            if (dateParts.length != 3) { //makes sure a year month and day are properly entered to proceed
                 System.out.println("Invalid date format. Please use YYYY-MM-DD.");
                 continue;
             }
@@ -29,7 +29,7 @@ public class BudgetManager {
                 int month = Integer.parseInt(dateParts[1]);
                 int day = Integer.parseInt(dateParts[2]);
 
-                // Check month and day range
+                //checks year, month, day and displays error message if wrong format is input
                 if (year < 2024) {
                     System.out.println("Invalid year. Please enter a year that is 2024 or later.");
                 } else if (month < 1 || month > 12) {
@@ -46,12 +46,12 @@ public class BudgetManager {
     }
 
     public String askDestination() {
-        System.out.println("Select your destination (all trips start from Washington DC, you must select a number i.e. 1 or 4):");
+        System.out.println("Select your destination (all trips are round trip and start from Washington DC, you must select a number i.e. 1 or 4):");
         System.out.println("1. Paris\n2. Munich\n3. London\n4. Rome");
         int choice = scanner.nextInt();
 
         String destination;
-        switch (choice) {
+        switch (choice) { //presents user with choice of destinations to select from
             case 1:
                 destination = "Paris";
                 break;
@@ -71,18 +71,17 @@ public class BudgetManager {
         return destination;
     }
 
-    public void printItinerary(String travelDate, double budget, String destination, double airfare, double insurance, double hotelCost, double excursionCost) {
-        System.out.println("\n--- Your Final Itinerary ---");
-        System.out.println("Travel Date: " + travelDate);
+    public void printItinerary(String travelDate, double budget, String destination, double airfare, double insurance, double hotelPri, double excursionCost) {
+        //final display for the user to get all info for their trip in one place
+        System.out.println("\n--- Your MyTrip Itinerary ---");
+        System.out.println("Departure Date: " + travelDate);
         System.out.println("Destination: " + destination);
         System.out.printf("Airfare: $%.2f\n", airfare);
         System.out.printf("Travel Insurance: $%.2f\n", insurance);
-        System.out.printf("Hotel Cost: $%.2f\n", hotelCost);
+        System.out.printf("Hotel Cost: $%.2f\n", hotelPri);
         System.out.printf("Excursions Cost: $%.2f\n", excursionCost);
-        System.out.printf("Total Cost: $%.2f\n", airfare + insurance + hotelCost + excursionCost);
-        System.out.printf("\nRemaining Budget: $%.2f\n", budget - (airfare + insurance + hotelCost + excursionCost));
+        System.out.printf("Total Cost: $%.2f\n", airfare + insurance + hotelPri + excursionCost);
+        System.out.printf("\nRemaining Budget: $%.2f\n", budget - (airfare + insurance + hotelPri + excursionCost));
         System.out.println("\nReminder: Bring all important documents such as passports, visa, etc., and personal care items like toiletries.");
     }
 }
-
-
