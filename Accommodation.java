@@ -5,16 +5,16 @@ public class Accommodation {
     private Scanner scanner;
     private Map<String, Map<Integer, List<Hotel>>> hotelInfo;
     private double totalHotelCost;
-     
+
     public double GetTotalHotelCost() {
-    	return totalHotelCost;
+        return totalHotelCost;
     }
-    
+
     public Accommodation(Scanner scanner) {
         this.scanner = scanner;
         this.hotelInfo = new HashMap<>(); //using hashmap for store name, distance, price and rating for hotels in each city
         this.totalHotelCost = 0;
-        
+
         //key for the map is an integer and the value is the hotel arrays
         Map<Integer, List<Hotel>> parisHotels = new HashMap<>();
         parisHotels.put(1, Arrays.asList( //stores paris 1-2 star rated hotel info into the hashmap
@@ -194,9 +194,9 @@ public class Accommodation {
         System.out.print("How many nights will you stay? "); //allows user to choose how long they will stay
         int nights = scanner.nextInt();
         totalHotelCost = roomPrice * nights;
-        System.out.printf("Total Hotel Cost per person for %s (%s Room): $%.2f\n", //displays the total cost of the room based on their preferences
-                selectedHotel.theName(), theRoomName(roomType), totalHotelCost);
-        
+        /*System.out.printf("Total Hotel Cost per person for %s (%s Room): $%.2f\n", //displays the total cost of the room based on their preferences
+                selectedHotel.theName(), theRoomName(roomType), totalHotelCost);*/
+
         return selectedHotel;
     }
 
