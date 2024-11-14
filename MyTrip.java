@@ -33,7 +33,8 @@ public class MyTrip {
         Hotel selectedHotel = accommodation.calculateHotel(destination);
         double hotelPri = 0;
         if (selectedHotel != null) {
-            hotelPri = accommodation.GetTotalHotelCost() * (numTravelers + 1);
+            hotelPri = accommodation.GetTotalHotelCost();
+            /*hotelPri = accommodation.GetTotalHotelCost() * (numTravelers + 1);*/
             System.out.printf("Total Accommodation Cost for %d travelers: $%.2f\n", numTravelers + 1, hotelPri);
         } else {
             System.out.println("No suitable accommodation was selected.");
